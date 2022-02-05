@@ -4,14 +4,17 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { Col, Container, Form, ListGroup, Row, Button, CloseButton, InputGroup, FormControl } from 'react-bootstrap';
 import { PostsContext } from '../contexts/PostsContext';
+import { GetPosts } from '../services/PostsService';
 
 function PostsPage() {
 
   const { setPosts } = useContext(PostsContext);
 
-  useEffect(() => {
+  useEffect(async () => {
 
-    setPosts([{ "id": "1", "message": "mesaj 1" }])
+    const posts =  await GetPosts();
+    console.log('all-posts', posts);
+    setPosts(posts);
 
   }, []);
 
