@@ -40,9 +40,8 @@ function PostForm() {
           id: uuidv4()
       }
 
-      dispatch({ type: PostActionTypes.NewPostItem, payload:param });
-
-      console.log('form-values',param);
+      // yeni bir ekleme isteğinde bulunmasını söyledik.
+      dispatch({ type: PostActionTypes.NewPostType, payload:param });
 
     }
 
