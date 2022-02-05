@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { Col, Container, Form, ListGroup, Row, Button, CloseButton, InputGroup, FormControl } from 'react-bootstrap';
+import PostList from '../components/PostList';
 import { PostsContext } from '../contexts/PostsContext';
 import { GetPosts } from '../services/PostsService';
 
@@ -55,21 +56,7 @@ function PostsPage() {
           </InputGroup>
         </Col>
         <Col md={12}>
-          <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item >
-              <Row className="d-flex justify-content-between">
-                <Col md={10}>Vestibulum at eros</Col>
-                <Col md={2} className="d-flex justify-content-end align-items-center">
-                  <Button variant="secondary">Düzenle</Button>
-                  <CloseButton></CloseButton>
-                </Col>
-              </Row>
-            </ListGroup.Item>
-          </ListGroup>
+          <PostList />
         </Col>
 
       </Row>
