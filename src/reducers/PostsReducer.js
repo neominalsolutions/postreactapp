@@ -1,13 +1,15 @@
 
 export const PostActionTypes = {
-    NewPostType:"NewPostItem",
-    DeletePostType:"DeletePostItem",
-    FilterPostType:"FilterPosts"
+    NewPostItem:"NewPostItem",
+    DeletePostItem:"DeletePostItem",
+    FilterPosts:"FilterPosts"
 }
 
 export const PostsReducer = (state, action) => {
 
-    if(PostActionTypes.NewPostType == action.type) {
+    console.log('action',action)
+
+    if(PostActionTypes.NewPostItem == action.type) {
         state = [ action.payload ,... state];
         return state;
     }

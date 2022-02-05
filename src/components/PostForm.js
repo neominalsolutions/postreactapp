@@ -41,7 +41,7 @@ function PostForm() {
       }
 
       // yeni bir ekleme isteğinde bulunmasını söyledik.
-      dispatch({ type: PostActionTypes.NewPostType, payload:param });
+      dispatch({ type: PostActionTypes.NewPostItem, payload:param });
 
     }
 
