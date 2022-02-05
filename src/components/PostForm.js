@@ -2,28 +2,34 @@ import React from 'react';
 import { useReducer } from 'react';
 import { useContext } from 'react';
 import { useEffect } from 'react';
+import { useCallback } from 'react';
 import { useRef } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 import { PostsContext } from '../contexts/PostsContext';
-import { PostActionTypes, PostsReducer } from '../reducers/PostsReducer';
+import { PostsReducer } from '../reducers/PostsReducer';
 
 function PostForm() {
 
     // ekleme işlemi öncesindeki state ise posts
-    const {posts,setPosts} = useContext(PostsContext);
-    // postItems ise ekleme işlemi sonrası ki state'imiz.
-    const [postItems, dispatch] = useReducer(PostsReducer, posts);
 
-    useEffect(() => {
+    const { dispatch } = useContext(PostsContext);
 
-        console.log('state-değişti', postItems.length);
-        // useReducer local state çalışır userReducer güncel haline context'e aşağıdaki gibi set ettik.
-        setPosts(postItems);
 
-    },[postItems])
+    // useEffect(() => {
 
-   const formRef =  useRef(null);
+       
+    //     // postItems ise ekleme işlemi sonrası ki state'imiz.
+   
+
+    //     // console.log('posts', posts)
+    //     // console.log('state-değişti', postItems.length);
+    //     // useReducer local state çalışır userReducer güncel haline context'e aşağıdaki gibi set ettik.
+    //     setPosts(postItems);
+
+    // },[postItems] )
+
+    const formRef = useRef(null);
 
     const onFormSubmit = (event) => {
         event.preventDefault();
@@ -31,39 +37,39 @@ function PostForm() {
 
         // form içerisindeki inputlarında değerlerini JS Api olan FormData ile alırız.
         // formRef.current html elemente erişmemizi sağlar
-      var formData =   new FormData(formRef.current);
+        var formData = new FormData(formRef.current);
 
-      var param = {
-          title: formData.get('title'),
-          body:formData.get('body'),
-          userId:1,
-          id: uuidv4()
-      }
+        var param = {
+            title: formData.get('title'),
+            body: formData.get('body'),
+            userId: 1,
+            id: uuidv4()
+        }
 
-      // yeni bir ekleme isteğinde bulunmasını söyledik.
-      dispatch({ type: PostActionTypes.NewPostItem, payload:param });
+        // yeni bir ekleme isteğinde bulunmasını söyledik.
+        dispatch({ type: "NewPostItem", payload: param });
 
     }
 
-  return <div>
-          <Form ref={formRef} onSubmit={onFormSubmit}>
+    return <div>
+        <Form ref={formRef} onSubmit={onFormSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Makale Başlığı</Form.Label>
-              <Form.Control name="title" type="text" placeholder="Başlık" />
+                <Form.Label>Makale Başlığı</Form.Label>
+                <Form.Control name="title" type="text" placeholder="Başlık" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Makale içeriği</Form.Label>
-              <Form.Control name="body" as="textarea" type="text" placeholder="Makale içerik" />
+                <Form.Label>Makale içeriği</Form.Label>
+                <Form.Control name="body" as="textarea" type="text" placeholder="Makale içerik" />
             </Form.Group>
 
             <div className="d-flex justify-content-end">
-              <Button variant="primary" type="submit">
-                Makale Ekle
-              </Button>
+                <Button variant="primary" type="submit">
+                    Makale Ekle
+                </Button>
             </div>
-          </Form>
-  </div>;
+        </Form>
+    </div>;
 }
 
 export default PostForm;

@@ -10,13 +10,13 @@ import { GetPosts } from '../services/PostsService';
 
 function PostsPage() {
 
-  const { setPosts } = useContext(PostsContext);
+  const { dispatch } = useContext(PostsContext);
 
   useEffect(async () => {
 
     const posts = await GetPosts();
     console.log('all-posts', posts);
-    setPosts(posts);
+    dispatch({ type: "FetchPosts", payload: posts });
 
   }, []);
 
@@ -26,7 +26,7 @@ function PostsPage() {
       <Row>
 
         <Col md={12} className="my-5">
-          <PostForm />
+          <PostForm  />
         </Col>
 
         <Col md={12}>

@@ -1,15 +1,18 @@
 import { createContext } from "react";
 import React from 'react';
-import { useState } from "react";
+import { useReducer } from "react";
+import { PostsReducer } from "../reducers/PostsReducer";
 export const PostsContext = createContext();
 
 function PostsProvider({ children }) {
 
-    const [posts, setPosts] = useState([]);
+    // dispatch ile postsState değiştiririz.
+    // action.type ve action.payload değerlerine göre işlem yapamayı sağlar.
+    const [posts, dispatch] = useReducer(PostsReducer,[]);
 
     let values = {
         posts,
-        setPosts
+        dispatch
     }
 
     return <PostsContext.Provider value={values}>{children}</PostsContext.Provider>
