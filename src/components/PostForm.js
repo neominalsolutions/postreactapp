@@ -1,10 +1,27 @@
 import React from 'react';
+import { useReducer } from 'react';
+import { useContext } from 'react';
+import { useEffect } from 'react';
 import { useRef } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
+import { PostsContext } from '../contexts/PostsContext';
+import { PostActionTypes, PostsReducer } from '../reducers/PostsReducer';
 
 function PostForm() {
 
+    // ekleme işlemi öncesindeki state ise posts
+    const {posts,setPosts} = useContext(PostsContext);
+    // postItems ise ekleme işlemi sonrası ki state'imiz.
+    const [postItems, dispatch] = useReducer(PostsReducer, posts);
+
+    useEffect(() => {
+
+        console.log('state-değişti', postItems.length);
+        // useReducer local state çalışır userReducer güncel haline context'e aşağıdaki gibi set ettik.
+        setPosts(postItems);
+
+    },[postItems])
 
    const formRef =  useRef(null);
 
@@ -22,6 +39,8 @@ function PostForm() {
           userId:1,
           id: uuidv4()
       }
+
+      dispatch({ type: PostActionTypes.NewPostItem, payload:param });
 
       console.log('form-values',param);
 

@@ -1,8 +1,8 @@
 
 export const PostActionTypes = {
-    NewPostItem,
-    DeletePostItem,
-    FilterPosts
+    NewPostItem:"NewPostItem",
+    DeletePostItem:"DeletePostItem",
+    FilterPosts:"FilterPosts"
 }
 
 export const PostsReducer = (state, action) => {
