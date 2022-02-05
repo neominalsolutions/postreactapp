@@ -7,7 +7,7 @@ export const PostActionTypes = {
 
 export const PostsReducer = (state, action) => {
 
-    if(PostActionTypes.NewPostItem == action.type) {
+    if(PostActionTypes.NewPostType == action.type) {
         state = [ action.payload ,... state];
         return state;
     }
