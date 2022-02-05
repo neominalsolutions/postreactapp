@@ -8,6 +8,7 @@ function PostsProvider({ children }) {
 
     // dispatch ile postsState değiştiririz.
     // action.type ve action.payload değerlerine göre işlem yapamayı sağlar.
+    // useState yerine birden fazla yerden state değiştiridiğimiz için useReducer kullandık.
     const [posts, dispatch] = useReducer(PostsReducer,[]);
 
     let values = {
