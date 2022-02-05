@@ -25,6 +25,8 @@ function PostList() {
         setModalState(item);
     }
 
+    // close butonuna basınca modalState boşa çektik ve böylece modal gizlendi.
+    // modal gizlenmesini ise show={modalState == null ? false:true} sağlar.
     const closeModal = () => {
         setModalState(null);
     }
