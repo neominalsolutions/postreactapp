@@ -7,7 +7,7 @@ import { PostsContext } from '../contexts/PostsContext';
 
 function PostList() {
 
-    const { posts,select, dispatch } = useContext(PostsContext);
+    const { posts,select, dispatch, filteredPosts } = useContext(PostsContext);
     // seçili olan post item değerini modalState de sakladık ve modal component içerisine title, body bu stateden okuduk
     const [modalState,setModalState] = useState(null);
 
@@ -15,7 +15,7 @@ function PostList() {
     const editItem = (id) => {
         const selectedPost = posts.find(x=> x.id == id);
         // postsreducer'a seçim işlemi yapacağımı söyle
-        console.log('modalState', modalState);
+        // console.log('modalState', modalState);
         select({type:'SelectPost',payload:selectedPost});
 
 
@@ -36,7 +36,7 @@ function PostList() {
 
     // modal da seçileni göstermek için yaptık
     const selectItem = (item) => {
-        console.log('selectItem')
+        // console.log('selectItem')
         setModalState(item);
     }
 
@@ -49,7 +49,7 @@ function PostList() {
     return <div>
 
         <ListGroup>
-            {posts.map((item, key) => {
+            {filteredPosts.map((item, key) => {
                 return <ListGroup.Item key={key} >
                     <Row className="d-flex justify-content-between">
                         <Col md={9}>{item?.title}</Col>

@@ -42,7 +42,7 @@ function PostForm() {
         var formData = new FormData(formRef.current);
 
 
-        console.log('selectedPost', selectedPost);
+        // console.log('selectedPost', selectedPost);
 
         // yeni bir ekleme isteğinde bulunmasını söyledik.
         if (selectedPost == null) {

@@ -16,11 +16,15 @@ function PostsProvider({ children }) {
     //seçilen item üzerinde çalışacağız
     // inital değer null
 
+    const [filteredPosts, filter] = useReducer(PostsReducer, []);
+
     let values = {
         posts,
         dispatch,
         selectedPost,
-        select
+        select,
+        filteredPosts,
+        filter
     }
 
     return <PostsContext.Provider value={values}>{children}</PostsContext.Provider>

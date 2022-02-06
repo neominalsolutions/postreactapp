@@ -14,13 +14,16 @@ function App() {
 
   const { dispatch } = useContext(PostsContext);
 
-  console.log('App')
+  // console.log('App')
 
   useEffect(async () => {
     const posts = await GetPosts();
     // console.log('all-posts', posts);
     // // dispatch sevk et demek.
+    // postları state de tuttuk
     dispatch({ type: "FetchPosts", payload: posts });
+    
+
   },[])
 
   return (

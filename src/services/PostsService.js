@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useContext } from "react";
-import { PostsContext } from "../contexts/PostsContext";
+
 
 // servislerin içerisinde context yapısını kullanamayız.
 // useContext ile apiden çekilen bilgileri sadece Component içerisinde set edebiliyoruz.
