@@ -10,6 +10,9 @@ function PostsProvider({ children }) {
     // action.type ve action.payload değerlerine göre işlem yapamayı sağlar.
     // useState yerine birden fazla yerden state değiştiridiğimiz için useReducer kullandık.
     const [posts, dispatch] = useReducer(PostsReducer,[]);
+    // constext reducer üzerinde değişiklikleri dinleyecektir.
+    const [selectedPost, select] = useReducer(PostsReducer, null);
+    // inital değer null
 
     let values = {
         posts,

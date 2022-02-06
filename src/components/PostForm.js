@@ -53,7 +53,9 @@ function PostForm() {
 
     return <div>
         <Form ref={formRef} onSubmit={onFormSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+         
+
+        <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Makale Başlığı</Form.Label>
                 <Form.Control name="title" type="text" placeholder="Başlık" />
             </Form.Group>
@@ -63,11 +65,12 @@ function PostForm() {
                 <Form.Control name="body" as="textarea" type="text" placeholder="Makale içerik" />
             </Form.Group>
 
-            <div className="d-flex justify-content-end">
+       
+         <div className="d-flex justify-content-end">
                 <Button variant="primary" type="submit">
                     Makale Ekle
                 </Button>
-            </div>
+            </div> 
         </Form>
     </div>;
 }

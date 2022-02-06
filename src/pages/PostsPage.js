@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { Col, Container, Form, ListGroup, Row, Button, CloseButton, InputGroup, FormControl } from 'react-bootstrap';
@@ -10,16 +10,17 @@ import { GetPosts } from '../services/PostsService';
 
 function PostsPage() {
 
-  const { dispatch } = useContext(PostsContext);
+  console.log('PostsPage')
 
-  useEffect(async () => {
+  // const { dispatch } = useContext(PostsContext);
 
-    const posts = await GetPosts();
-    console.log('all-posts', posts);
-    dispatch({ type: "FetchPosts", payload: posts });
 
-  }, []);
 
+  // useCallback(async () => {
+  //   console.log('PostsPageCallBack')
+  //   const posts = await GetPosts();
+  //   dispatch({ type: "FetchPosts", payload: posts });
+  // },[]);
 
   return <div>
     <Container>
