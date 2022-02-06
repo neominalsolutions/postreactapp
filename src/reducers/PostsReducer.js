@@ -19,12 +19,35 @@ export const PostsReducer = (state, action) => {
         return state;
     }
     else if(action.type == "FetchPosts"){
+        // dizi değerini güncellemek için yine spread operatör
         state = [ ... action.payload];
         return state;
     }
     else if(action.type == "SelectPost") {
-        state = {... action.payload};
+        // direk obje güncelleme işlemi için spread operatör kullandık
+        state = action.payload;
         return state;
+    }
+    else if(action.type == "UpdatePostItem"){
+        const existingItem = state.find(x=> x.id == action.payload.id);
+
+        console.log('existingItem', existingItem);
+        console.log('update-payload', action.payload);
+        // yeni değerin title ve body alanı farklı
+
+        // fakat dizi içerisindeki bulunan bir değeri güncellemek için ise object.assing tercih edelim.
+        // tek tek dizideki değerleri aşağıdaki gibi güncellemeye çalışmayalaım.
+
+        Object.assign(existingItem,action.payload);
+        // aş
+        // existingItem.title = action.payload.title;
+        // existingItem.body = action.payload.body;
+
+        state = [... state];
+        // state içinde değişne değere göre tekrar güncelle.
+
+        return state;
+
     }
 
     return state;
