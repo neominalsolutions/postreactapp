@@ -49,6 +49,14 @@ export const PostsReducer = (state, action) => {
         return state;
 
     }
+    else if(action.type = "DeletePostItem"){
+
+
+        // şuanki silinecek id sahip olmayanları fitreledik. yani elimizde silinen dışındakiler duruyor
+        state = [... state.filter(x=> x.id !== action.payload.id)]
+
+        return state;
+    }
 
     return state;
   };

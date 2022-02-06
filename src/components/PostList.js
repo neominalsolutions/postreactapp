@@ -7,7 +7,7 @@ import { PostsContext } from '../contexts/PostsContext';
 
 function PostList() {
 
-    const { posts,select } = useContext(PostsContext);
+    const { posts,select, dispatch } = useContext(PostsContext);
     // seçili olan post item değerini modalState de sakladık ve modal component içerisine title, body bu stateden okuduk
     const [modalState,setModalState] = useState(null);
 
@@ -22,7 +22,16 @@ function PostList() {
     }
 
     const deleteItem = (id) => {
-        alert('silinecek' + id);
+
+       const result =  window.confirm('kaydı silmek istediğinize emin misiniz');
+
+       if(result){
+        dispatch({type:'DeletePostItem', payload:{id:id}})
+       } else {
+           alert('silme işlemi iptal edildi');
+       }
+
+       
     }
 
     // modal da seçileni göstermek için yaptık
