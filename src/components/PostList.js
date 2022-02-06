@@ -7,13 +7,18 @@ import { PostsContext } from '../contexts/PostsContext';
 
 function PostList() {
 
-    const { posts } = useContext(PostsContext);
+    const { posts,select } = useContext(PostsContext);
     // seçili olan post item değerini modalState de sakladık ve modal component içerisine title, body bu stateden okuduk
     const [modalState,setModalState] = useState(null);
 
 
     const editItem = (id) => {
-        alert('seçilen' + id);
+        const selectedPost = posts.find(x=> x.id == id);
+        // postsreducer'a seçim işlemi yapacağımı söyle
+        console.log('modalState', modalState);
+        select({type:'SelectPost',payload:selectedPost});
+
+
     }
 
     const deleteItem = (id) => {
@@ -22,6 +27,7 @@ function PostList() {
 
     // modal da seçileni göstermek için yaptık
     const selectItem = (item) => {
+        console.log('selectItem')
         setModalState(item);
     }
 
@@ -35,11 +41,12 @@ function PostList() {
 
         <ListGroup>
             {posts.map((item, key) => {
-                return <ListGroup.Item key={key} onClick={() => selectItem(item)}>
+                return <ListGroup.Item key={key} >
                     <Row className="d-flex justify-content-between">
-                        <Col md={10}>{item?.title}</Col>
-                        <Col md={2} className="d-flex justify-content-end align-items-center">
-                            <Button onClick={() => editItem(item.id)} variant="secondary">Düzenle</Button>
+                        <Col md={9}>{item?.title}</Col>
+                        <Col md={3} className="d-flex justify-content-end align-items-center">
+                            <Button className="me-2" size={"sm"} onClick={() => selectItem(item)} variant="warning">Seç</Button>
+                            <Button className="me-2" size={"sm"} onClick={() => editItem(item.id)} variant="secondary">Düzenle</Button>
                             <CloseButton onClick={() => deleteItem(item.id)}></CloseButton>
                         </Col>
                     </Row>

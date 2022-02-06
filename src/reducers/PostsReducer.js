@@ -22,6 +22,12 @@ export const PostsReducer = (state, action) => {
         state = [ ... action.payload];
         return state;
     }
+    else if(action.type == "SelectPost") {
+        state = {... action.payload};
+        return state;
+    }
 
     return state;
   };
+
+

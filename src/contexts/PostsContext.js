@@ -10,13 +10,17 @@ function PostsProvider({ children }) {
     // action.type ve action.payload değerlerine göre işlem yapamayı sağlar.
     // useState yerine birden fazla yerden state değiştiridiğimiz için useReducer kullandık.
     const [posts, dispatch] = useReducer(PostsReducer,[]);
+    // silme,ekleme, arama işlmeleri yapacaz ve dizi olarak çalışacağız
     // constext reducer üzerinde değişiklikleri dinleyecektir.
     const [selectedPost, select] = useReducer(PostsReducer, null);
+    //seçilen item üzerinde çalışacağız
     // inital değer null
 
     let values = {
         posts,
-        dispatch
+        dispatch,
+        selectedPost,
+        select
     }
 
     return <PostsContext.Provider value={values}>{children}</PostsContext.Provider>

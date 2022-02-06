@@ -13,7 +13,7 @@ function PostForm() {
 
     // ekleme işlemi öncesindeki state ise posts
 
-    const { dispatch } = useContext(PostsContext);
+    const { dispatch,selectedPost } = useContext(PostsContext);
 
 
     // useEffect(() => {
@@ -57,12 +57,12 @@ function PostForm() {
 
         <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Makale Başlığı</Form.Label>
-                <Form.Control name="title" type="text" placeholder="Başlık" />
+                <Form.Control name="title" value={selectedPost?.title} type="text" placeholder="Başlık" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Makale içeriği</Form.Label>
-                <Form.Control name="body" as="textarea" type="text" placeholder="Makale içerik" />
+                <Form.Control name="body" value={selectedPost?.body}  as="textarea" type="text" placeholder="Makale içerik" />
             </Form.Group>
 
        
